@@ -1,10 +1,10 @@
-export function TaskList({ tasks }) {
+export function BacklogTaskList({ backlogTasks }) {
     return (
       <ul>
-        {tasks.map((task) => {
+        {backlogTasks.map((backlogTask) => {
           return (
-            <li key={task.id}>
-              {task.name}
+            <li key={backlogTask.id}>
+              {backlogTask.name}
             </li>
           );
         })}

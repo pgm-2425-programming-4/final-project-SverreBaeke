@@ -11,12 +11,11 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true,
       "unique": true,
-      "minLength": 2,
-      "regex": "^[a-zA-Z]+:[a-zA-Z]$"
+      "minLength": 2
     },
     "category": {
       "type": "relation",

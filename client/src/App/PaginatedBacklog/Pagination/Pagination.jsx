@@ -1,5 +1,5 @@
 import { PAGE_SIZE_OPTIONS } from "../../../constants/constants";
-
+import "./Pagination.css";
 export function Pagination({
   currentPage,
   pageCount,
@@ -50,8 +50,8 @@ export function Pagination({
         <li key={index}>
           <button
             className={
-              "pagination-link " +
-              (pageNumber === currentPage ? "is-current" : "")
+              "page-button " +
+              (pageNumber === currentPage ? "active" : "")
             }
             aria-label={`Go to page ${pageNumber}`}
             onClick={() => onPageChanged(pageNumber)}
@@ -66,21 +66,23 @@ export function Pagination({
   return (
     <nav className="pagination" role="navigation" aria-label="pagination">
       <button
-        className="pagination-previous"
+        className = "page-button"
         disabled={currentPage === 1}
         onClick={() => onPageChanged(currentPage - 1)}
       >
         Previous
       </button>
+      <ul className="pagination-list">{pageLinks}</ul>
       <button
-        className="pagination-next"
+        className = "page-button"
         disabled={currentPage === pageCount}
         onClick={() => onPageChanged(currentPage + 1)}
       >
-        Next page
+        Next
       </button>
-      <div className="select" style={{ marginRight: "2rem" }}>
+      <div>
         <select
+          className = "dropdown"
           defaultValue={pageSize}
           onChange={(event) => onPageSizeChanged(event.target.value)}
         >
@@ -93,7 +95,6 @@ export function Pagination({
           })}
         </select>
       </div>
-      <ul className="pagination-list">{pageLinks}</ul>
     </nav>
   );
 }

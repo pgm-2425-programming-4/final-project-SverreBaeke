@@ -1,13 +1,23 @@
+import "./Backlog.css";
 export function BacklogTaskList({ backlogTasks }) {
-    return (
-      <ul>
-        {backlogTasks.map((backlogTask) => {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Task name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {backlogTasks.map((backlogTask, index) => {
           return (
-            <li key={backlogTask.id}>
-              {backlogTask.name}
-            </li>
+            <tr key={index}>
+              <td className="task" key={backlogTask.id}>
+                {backlogTask.name}
+              </td>
+            </tr>
           );
         })}
-      </ul>
-    );
-  }
+      </tbody>
+    </table>
+  );
+}

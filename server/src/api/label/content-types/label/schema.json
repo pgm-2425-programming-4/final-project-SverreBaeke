@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "statuses",
+  "collectionName": "labels",
   "info": {
-    "singularName": "status",
-    "pluralName": "statuses",
-    "displayName": "Status",
-    "description": ""
+    "singularName": "label",
+    "pluralName": "labels",
+    "displayName": "Label"
   },
   "options": {
     "draftAndPublish": true
@@ -14,13 +13,14 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": false
     },
     "tasks": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::task.task",
-      "mappedBy": "state"
+      "inversedBy": "labels"
     }
   }
 }

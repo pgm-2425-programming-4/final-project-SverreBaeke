@@ -40,7 +40,9 @@
   border: 1px solid #e5e7eb;
   background-color: #ffffff;
   color: #374151;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   cursor: pointer;
 }
 

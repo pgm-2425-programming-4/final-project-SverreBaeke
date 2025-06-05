@@ -1,4 +1,4 @@
-import { API_TOKEN,API_URL } from "../constants/constants";
+import { API_TOKEN, API_URL } from "../constants/constants";
 
 export async function fetchBacklog(page, pageSize) {
   const result = await fetch(
@@ -7,8 +7,8 @@ export async function fetchBacklog(page, pageSize) {
       headers: {
         Authorization: `Bearer ${API_TOKEN}`,
       },
-    }
+    },
   );
   const data = await result.json();
-  return data
+  return data;
 }

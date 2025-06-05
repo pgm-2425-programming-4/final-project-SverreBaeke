@@ -19,30 +19,34 @@ export function PaginatedBackLog() {
     setPageSize(size);
   }
 
-  const { isPending, isError, data: fetchedBacklogTasks, error } = useQuery ({
-    queryKey: ['backlogTasks', {currentPage, pageSize}],
-    queryFn: () => fetchBacklog(currentPage,pageSize),
-  })
+  const {
+    isPending,
+    isError,
+    data: fetchedBacklogTasks,
+    error,
+  } = useQuery({
+    queryKey: ["backlogTasks", { currentPage, pageSize }],
+    queryFn: () => fetchBacklog(currentPage, pageSize),
+  });
 
   useEffect(() => {
-    if(fetchedBacklogTasks) {
+    if (fetchedBacklogTasks) {
       if (currentPage > fetchedBacklogTasks.meta.pagination.pageCount) {
         setCurrentPage(fetchedBacklogTasks.meta.pagination.pageCount);
       }
-      console.log(fetchedBacklogTasks.data)
+      console.log(fetchedBacklogTasks.data);
       setBacklogTasks(fetchedBacklogTasks.data);
       setPageCount(fetchedBacklogTasks.meta.pagination.pageCount);
     }
-  }, [currentPage, fetchedBacklogTasks])
+  }, [currentPage, fetchedBacklogTasks]);
 
   if (isPending) {
-    return <span>Loading...</span>
+    return <span>Loading...</span>;
   }
 
   if (isError) {
-    return <span>Error: {error.message}</span>
+    return <span>Error: {error.message}</span>;
   }
-
 
   return (
     <>

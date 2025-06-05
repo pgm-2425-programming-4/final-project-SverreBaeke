@@ -8,12 +8,10 @@ export function BacklogTaskList({ backlogTasks }) {
         </tr>
       </thead>
       <tbody>
-        {backlogTasks.map((backlogTask, index) => {
+        {backlogTasks.map((backlogTask) => {
           return (
-            <tr key={index}>
-              <td className="task" key={backlogTask.id}>
-                {backlogTask.name}
-              </td>
+            <tr key={backlogTask.id}>
+              <td className="task">{backlogTask.name}</td>
             </tr>
           );
         })}

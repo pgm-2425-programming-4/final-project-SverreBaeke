@@ -1,0 +1,12 @@
+:root {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f3f4f6;
+  --color-bg-tertiary: #f9fafb;
+  --color-bg-hover: #e5e7eb;
+  --color-text-primary: #374151;
+  --color-text-secondary: #111827;
+  --color-accent: #6366f1;
+  --color-border: #e5e7eb;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-accent: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}

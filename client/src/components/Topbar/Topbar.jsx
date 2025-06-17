@@ -20,7 +20,7 @@ export function Topbar() {
       <nav className="topbar__nav">
         <ul className="topbar__list">
           <li className="topbar__item">
-            <Link to="/projects/$projectId/backlog" params={{projectId}} className="topbar__link">
+            <Link to="/projects/$projectId/backlog" className="topbar__link">
               Backlog
             </Link>
           </li>

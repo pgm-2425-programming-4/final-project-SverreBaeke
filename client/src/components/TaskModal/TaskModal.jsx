@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import "./TaskModal.css";
 
-export function TaskModal({ task, isOpen, onClose }) {
+export function TaskModal({ task, isOpen, onClose, onStatusChange, statuses }) {
   useEffect(() => {
     const dialog = document.getElementById("task-modal");
 
     if (isOpen && task) {
-      dialog.showModal();
+      dialog?.showModal();
     } else {
-      dialog.close();
+      dialog?.close();
     }
   }, [isOpen, task]);
+  if (!task) return null;
 
   return (
     <dialog className="task-modal" id="task-modal">
@@ -23,6 +24,29 @@ export function TaskModal({ task, isOpen, onClose }) {
         <p className="task-modal__date">
           <strong>Created:</strong> {new Date(task?.createdAt).toLocaleString()}
         </p>
+
+        <div className="task-modal__status-section">
+          <label htmlFor="status-select">
+            <strong>Change Status: </strong>
+          </label>
+          <select
+            name="status-select"
+            id="status-select"
+            className="task-modal__select"
+            defaultValue={task?.state?.documentId}
+            onChange={(e) => onStatusChange(task?.documentId, e.target.value)}
+          >
+            <option value="">Select status...</option>
+            {statuses.map((status) => {
+              return (
+                <option key={status.documentId} value={status.documentId}>
+                  {status.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
         <button className="task-modal__button" onClick={onClose}>
           Close
         </button>

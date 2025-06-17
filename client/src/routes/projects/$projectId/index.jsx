@@ -16,8 +16,13 @@ export const Route = createFileRoute("/projects/$projectId/")({
 
 function RouteComponent() {
   const project = Route.useLoaderData();
-  const tasks = project.tasks;
-  console.log(tasks)
+  const allTasks = project.tasks;
+  
+const activeTasks = allTasks.filter((task) => {
+  const status = task?.state?.name?.toLowerCase();
+  return status !== "backlog"
+})
+
   const [selectedTask, setSelectedTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -36,7 +41,7 @@ function RouteComponent() {
     <header>
       <h1>{project.name}</h1>
     </header>
-      <TaskBoard tasks={tasks} handleTaskClick={handleTaskClick}/>
+      <TaskBoard tasks={activeTasks} handleTaskClick={handleTaskClick}/>
       <TaskModal
         task={selectedTask}
         isOpen={isModalOpen}

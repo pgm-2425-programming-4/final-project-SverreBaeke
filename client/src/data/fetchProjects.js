@@ -12,12 +12,14 @@ fetchProjects() {
 }
 
 export async function fetchProjectsById(projectId) {
-  const result = await fetch(`${API_URL}/projects/${projectId}?populate=*`, {
+  const result = await fetch(`${API_URL}/projects/${projectId}?populate[tasks][populate]=*`, {
     headers: {
       Authorization: `Bearer ${API_TOKEN}`,
     },
   });
   const data = await result.json();
+
+  console.log(data)
   return data.data;
 }
 

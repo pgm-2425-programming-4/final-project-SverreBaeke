@@ -21,6 +21,9 @@
       "relation": "oneToMany",
       "target": "api::task.task",
       "mappedBy": "state"
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }

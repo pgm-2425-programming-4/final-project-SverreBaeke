@@ -9,7 +9,6 @@ export function PaginatedBackLog({ projectId }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[0]);
-  const [backlogTasks, setBacklogTasks] = useState([]);
 
   function handlePageChanged(pageNumber) {
     setCurrentPage(pageNumber);
@@ -17,6 +16,7 @@ export function PaginatedBackLog({ projectId }) {
 
   function handlePageSizeChanged(size) {
     setPageSize(size);
+    setCurrentPage(1);
   }
 
   const {
@@ -34,7 +34,6 @@ export function PaginatedBackLog({ projectId }) {
       if (currentPage > fetchedBacklogTasks.meta.pagination.pageCount) {
         setCurrentPage(fetchedBacklogTasks.meta.pagination.pageCount);
       }
-      setBacklogTasks(fetchedBacklogTasks.data);
       setPageCount(fetchedBacklogTasks.meta.pagination.pageCount);
     }
   }, [currentPage, fetchedBacklogTasks]);
@@ -47,6 +46,8 @@ export function PaginatedBackLog({ projectId }) {
     return <span>Error: {error.message}</span>;
   }
 
+  const backlogTasks = fetchedBacklogTasks.data || [];
+  
   return (
     <>
       <div style={{ marginBottom: "2rem" }}>

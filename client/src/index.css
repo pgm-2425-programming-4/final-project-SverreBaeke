@@ -4,17 +4,32 @@
   --color-bg-primary: #ffffff;
   --color-bg-secondary: #f3f4f6;
   --color-bg-tertiary: #f9fafb;
+  --color-bg-quaternary: #111827;
   --color-bg-hover: #e5e7eb;
 
   --color-text-primary: #374151;
   --color-text-secondary: #111827;
+  --color-text-tertiary: #ffffff;
   --color-text-muted: rgba(55, 65, 81, 0.7);
 
   --color-accent: #6366f1;
   --color-accent-hover: #5b5bde;
 
+  --color-accent-green: #10b981;
+  --color-accent-green-hover: #059669;
+
+  --color-accent-blue: #3b82f6;
+  --color-accent-blue-hover: #2563eb;
+
+  --color-accent-orange: #f59e0b;
+  --color-accent-orange-hover: #d97706;
+
   --color-border: #e5e7eb;
   --color-border-focus: var(--color-accent);
+
+  --color-border-green: var(--color-accent-green);
+  --color-border-blue: var(--color-accent-blue);
+  --color-border-orange: var(--color-accent-orange);
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-accent: 0 0 0 2px rgba(99, 102, 241, 0.2);

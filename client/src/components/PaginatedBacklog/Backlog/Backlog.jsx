@@ -10,7 +10,7 @@ export function BacklogTaskList({ backlogTasks }) {
 
   return (
     <>
-      <h1>{projectName}</h1>
+      <h1>Backlog for {projectName}</h1>
       <table>
         <thead>
           <tr>

@@ -1,7 +1,7 @@
 .app-layout {
   display: grid;
-  grid-template-columns: 16.25rem 1fr;
-  grid-template-rows: 4rem 1fr;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--topbar-height) 1fr;
   grid-template-areas:
     "sidebar topbar"
     "sidebar content";
@@ -20,6 +20,6 @@
 
 .app-layout__content {
   grid-area: content;
-  padding: 2rem;
+  padding: var(--spacing-2xl);
   background: var(--color-bg-primary);
 }

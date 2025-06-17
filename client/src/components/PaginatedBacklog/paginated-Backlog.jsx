@@ -5,7 +5,7 @@ import { fetchBacklog } from "../../data/fetchBacklog";
 import { BacklogTaskList } from "./Backlog/Backlog";
 import { useQuery } from "@tanstack/react-query";
 
-export function PaginatedBackLog() {
+export function PaginatedBackLog({ projectId }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
   const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[0]);
@@ -25,8 +25,8 @@ export function PaginatedBackLog() {
     data: fetchedBacklogTasks,
     error,
   } = useQuery({
-    queryKey: ["backlogTasks", { currentPage, pageSize }],
-    queryFn: () => fetchBacklog(currentPage, pageSize),
+    queryKey: ["backlogTasks", { projectId, currentPage, pageSize }],
+    queryFn: () => fetchBacklog(projectId, currentPage, pageSize),
   });
 
   useEffect(() => {
@@ -34,7 +34,6 @@ export function PaginatedBackLog() {
       if (currentPage > fetchedBacklogTasks.meta.pagination.pageCount) {
         setCurrentPage(fetchedBacklogTasks.meta.pagination.pageCount);
       }
-      console.log(fetchedBacklogTasks.data);
       setBacklogTasks(fetchedBacklogTasks.data);
       setPageCount(fetchedBacklogTasks.meta.pagination.pageCount);
     }

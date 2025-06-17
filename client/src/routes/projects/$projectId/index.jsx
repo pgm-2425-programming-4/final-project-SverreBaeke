@@ -33,7 +33,7 @@ function RouteComponent() {
 
   return (
     <>
-    <header className="project-header">
+    <header>
       <h1>{project.name}</h1>
     </header>
       <TaskBoard tasks={tasks} handleTaskClick={handleTaskClick}/>

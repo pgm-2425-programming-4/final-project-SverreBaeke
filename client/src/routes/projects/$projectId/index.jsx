@@ -32,18 +32,39 @@ function RouteComponent() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
+  const [selectedLabels, setSelectedLabels] = useState([])
 
   useEffect(() => {
     setTasks(project.tasks);
     setIsModalOpen(false);
     setSelectedTask(null);
     setIsAddTaskModalOpen(false);
+    setSelectedLabels([])
   }, [projectId, project.tasks]);
 
   const activeTasks = tasks.filter((task) => {
     const status = task?.state?.name?.toLowerCase();
     return status !== "backlog";
   });
+
+  const filteredTasks = activeTasks.filter((task) => {
+    const hasSelectedLabel = task.labels.some((label) =>
+      selectedLabels.includes(label.documentId)
+    );
+    return hasSelectedLabel;
+  });
+
+    function toggleLabelFilter(labelId) {
+    setSelectedLabels(prev => 
+      prev.includes(labelId)
+        ? prev.filter(id => id !== labelId)
+        : [...prev, labelId]
+    );
+  }
+
+  function clearFilters () {
+    setSelectedLabels([]);
+  }
 
   function handleTaskClick(task) {
     setSelectedTask(task);
@@ -66,7 +87,7 @@ function RouteComponent() {
   async function handleTaskCreated(newTaskData) {
     try {
       const createdTask = await createTask(newTaskData);
-      
+
       setTasks((prevTasks) => [...prevTasks, createdTask]);
       setIsAddTaskModalOpen(false);
     } catch (error) {
@@ -104,10 +125,14 @@ function RouteComponent() {
         projectName={project.name}
         projectId={projectId}
         onAddTask={handleAddTask}
+        labels={labels}
+        selectedLabels={selectedLabels}
+        onToggleLabel={toggleLabelFilter}
+        onClearFilters = {clearFilters}
       />
 
       <TaskBoard
-        tasks={activeTasks}
+        tasks={selectedLabels.length > 0? filteredTasks: activeTasks}
         handleTaskClick={handleTaskClick}
         statuses={statuses}
       />

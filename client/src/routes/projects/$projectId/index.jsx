@@ -28,7 +28,7 @@ export const Route = createFileRoute("/projects/$projectId/")({
 function RouteComponent() {
   const { project, statuses, labels, projectId } = Route.useLoaderData();
 
-  const [tasks, setTasks] = useState(project.tasks);
+  const [tasks, setTasks] = useState(project?.tasks);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
@@ -40,14 +40,14 @@ function RouteComponent() {
     setSelectedTask(null);
     setIsAddTaskModalOpen(false);
     setSelectedLabels([])
-  }, [projectId, project.tasks]);
+  }, [projectId, project?.tasks]);
 
-  const activeTasks = tasks.filter((task) => {
+  const activeTasks = tasks?.filter((task) => {
     const status = task?.state?.name?.toLowerCase();
     return status !== "backlog";
   });
 
-  const filteredTasks = activeTasks.filter((task) => {
+  const filteredTasks = activeTasks?.filter((task) => {
     const hasSelectedLabel = task.labels.some((label) =>
       selectedLabels.includes(label.documentId)
     );
@@ -122,7 +122,7 @@ function RouteComponent() {
   return (
     <>
       <Topbar
-        projectName={project.name}
+        projectName={project?.name}
         projectId={projectId}
         onAddTask={handleAddTask}
         labels={labels}

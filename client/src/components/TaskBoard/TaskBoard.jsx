@@ -3,7 +3,7 @@ import { TaskCard } from "../TaskCard/TaskCard";
 
 export function TaskBoard({ tasks, handleTaskClick, statuses }) {
   const groupTasksByStatus = (tasks) => {
-    return tasks.reduce((groups, task) => {
+    return tasks?.reduce((groups, task) => {
       const status = task?.state?.name || "To do";
       if (!groups[status]) {
         groups[status] = [];

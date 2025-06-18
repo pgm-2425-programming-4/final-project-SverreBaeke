@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { fetchStatuses,updateTaskStatus } from "../../../data/StatusesOperations";
+import {
+  fetchStatuses,
+  updateTaskStatus,
+} from "../../../data/StatusesOperations";
 import { fetchProjectsById } from "../../../data/fetchProjects";
 import { fetchLabels } from "../../../data/fetchLabels";
 import { TaskModal } from "../../../components/TaskModal/TaskModal";
 import { TaskBoard } from "../../../components/TaskBoard/TaskBoard";
 import { AddTaskModal } from "../../../components/AddTaskModal/AddTaskModal";
 import { createTask } from "../../../data/TaskOperations";
-import "./projects.css"
+import "./projects.css";
 
 export const Route = createFileRoute("/projects/$projectId/")({
   loader: async ({ params }) => {
@@ -24,15 +27,16 @@ export const Route = createFileRoute("/projects/$projectId/")({
 
 function RouteComponent() {
   const { project, statuses, labels } = Route.useLoaderData();
-  const allTasks = project.tasks;
-  const activeTasks = allTasks.filter((task) => {
-    const status = task?.state?.name?.toLowerCase();
-    return status !== "backlog";
-  });
 
+  const [tasks, setTasks] = useState(project.tasks);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
+
+  const activeTasks = tasks.filter((task) => {
+    const status = task?.state?.name?.toLowerCase();
+    return status !== "backlog";
+  });
 
   function handleTaskClick(task) {
     setSelectedTask(task);
@@ -55,9 +59,9 @@ function RouteComponent() {
   async function handleTaskCreated(newTaskData) {
     try {
       console.log("Creating task:", newTaskData);
-      await createTask(newTaskData);
+      const createdTask = await createTask(newTaskData);
+      setTasks((prevTasks) => [...prevTasks, createdTask]);
       setIsAddTaskModalOpen(false);
-      window.location.reload();
     } catch (error) {
       console.error("Failed to create task:", error);
       alert("Failed to create task. Please try again.");
@@ -67,8 +71,19 @@ function RouteComponent() {
   async function handleStatusChange(taskId, newStatusId) {
     try {
       await updateTaskStatus(taskId, newStatusId);
-
-      window.location.reload();
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => {
+          if (task.documentId === taskId) {
+            const newStatus = statuses.find(status => status.documentId === newStatusId);
+            return {
+              ...task,
+              state: newStatus
+            };
+          }
+          return task;
+        }),
+      );
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Failed to update task status:", error);
     }

@@ -37,7 +37,7 @@
   border-radius: var(--border-radius-md);
   padding: var(--spacing-sm) var(--spacing-lg);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: 0.2s ease;
   margin-top: var(--spacing-lg);
 }
 

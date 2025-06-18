@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useParams } from "@tanstack/react-router";
 import "./Topbar.css";
 
-export function Topbar({handleAddTask}) {
+export function Topbar() {
   const { projectId } = useParams({ strict: false });
 
   if (!projectId) {
@@ -33,16 +33,6 @@ export function Topbar({handleAddTask}) {
             </Link>
           </li>
         </ul>
-
-        <div className="topbar__actions">
-          <button
-            className="topbar__add-task-btn"
-            onClick={handleAddTask}
-            type="button"
-          >
-            + Add Task
-          </button>
-        </div>
       </nav>
     </header>
   );

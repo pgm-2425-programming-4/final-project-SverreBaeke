@@ -21,7 +21,7 @@ export function TaskBoard({ tasks, handleTaskClick, statuses }) {
 
   return (
     <section className="task-board">
-      {activeStatuses.map((status) => {
+      {activeStatuses?.map((status) => {
         return (
           <div key={status} className="task-board__column">
             <header className="task-board__header">
@@ -31,7 +31,7 @@ export function TaskBoard({ tasks, handleTaskClick, statuses }) {
               </span>
             </header>
             <div className="task-board__tasks">
-              {taskGroups[status].map((task) => {
+              {taskGroups[status]?.map((task) => {
                 return (
                   <TaskCard
                     key={task.id}

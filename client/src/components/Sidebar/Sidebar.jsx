@@ -1,8 +1,7 @@
-import { Link, useLoaderData } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import "./Sidebar.css";
 
-export function Sidebar() {
-  const projects = useLoaderData({ from: "__root__" });
+export function Sidebar({projects}) {
 
   return (
     <aside className="app-layout__sidebar">

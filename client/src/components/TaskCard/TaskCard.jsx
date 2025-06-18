@@ -3,7 +3,7 @@ import "./Taskcard.css";
 export function TaskCard({ task, onClick }) {
 
   const getStatusClass = (status) => {
-    switch (status.toLowerCase()) {
+    switch (status?.toLowerCase()) {
       case "done":
         return "task-card--done";
       case "in progress":
@@ -18,7 +18,7 @@ export function TaskCard({ task, onClick }) {
   };
 
   function renderTaskLabels(task) {
-    if (task.labels && task.labels.length > 0) {
+    if (task?.labels && task?.labels?.length > 0) {
       return (
         <ul className="task-card__labels">
           {task.labels.map((label) => {
@@ -35,8 +35,8 @@ export function TaskCard({ task, onClick }) {
   }
 
   return (
-    <article className={`task-card ${getStatusClass(task.state.name)}`} onClick={onClick}>
-      <h3 className="task-card__title">{task.name}</h3>
+    <article className={`task-card ${getStatusClass(task?.state?.name)}`} onClick={onClick}>
+      <h3 className="task-card__title">{task?.name}</h3>
       {renderTaskLabels(task)}
     </article>
   );

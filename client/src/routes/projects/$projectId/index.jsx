@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   fetchStatuses,
@@ -19,19 +19,26 @@ export const Route = createFileRoute("/projects/$projectId/")({
     const statuses = await fetchStatuses();
     const labels = await fetchLabels();
 
-    return { project, statuses, labels };
+    return { project, statuses, labels, projectId };
   },
   staleTime: 10000,
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { project, statuses, labels } = Route.useLoaderData();
+  const { project, statuses, labels, projectId } = Route.useLoaderData();
 
   const [tasks, setTasks] = useState(project.tasks);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
+
+  useEffect(() => {
+    setTasks(project.tasks);
+    setIsModalOpen(false);
+    setSelectedTask(null);
+    setIsAddTaskModalOpen(false);
+  }, [projectId, project.tasks]);
 
   const activeTasks = tasks.filter((task) => {
     const status = task?.state?.name?.toLowerCase();
@@ -58,8 +65,8 @@ function RouteComponent() {
 
   async function handleTaskCreated(newTaskData) {
     try {
-      console.log("Creating task:", newTaskData);
       const createdTask = await createTask(newTaskData);
+      
       setTasks((prevTasks) => [...prevTasks, createdTask]);
       setIsAddTaskModalOpen(false);
     } catch (error) {
@@ -95,7 +102,7 @@ function RouteComponent() {
     <>
       <Topbar
         projectName={project.name}
-        projectId={project.documentId}
+        projectId={projectId}
         onAddTask={handleAddTask}
       />
 
@@ -119,7 +126,7 @@ function RouteComponent() {
         onTaskCreated={handleTaskCreated}
         statuses={statuses}
         labels={labels}
-        projectId={project.documentId}
+        projectId={projectId}
       />
     </>
   );

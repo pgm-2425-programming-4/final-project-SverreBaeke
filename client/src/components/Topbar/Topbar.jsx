@@ -25,6 +25,7 @@ export function Topbar({ projectName, projectId, onAddTask }) {
                 to="/projects/$projectId"
                 params={{ projectId }}
                 className="topbar__link"
+                activeOptions={{ exact: true }}
               >
                 Board
               </Link>

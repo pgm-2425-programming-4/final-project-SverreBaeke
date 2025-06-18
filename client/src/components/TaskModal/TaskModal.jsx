@@ -3,12 +3,12 @@ import "./TaskModal.css";
 
 export function TaskModal({ task, isOpen, onClose, onStatusChange, statuses }) {
   useEffect(() => {
-    const dialog = document.getElementById("task-modal");
+    const $dialog = document.getElementById("task-modal");
 
     if (isOpen && task) {
-      dialog?.showModal();
+      $dialog?.showModal();
     } else {
-      dialog?.close();
+      $dialog?.close();
     }
   }, [isOpen, task]);
   if (!task) return null;

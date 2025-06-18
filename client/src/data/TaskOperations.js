@@ -2,7 +2,7 @@ import { API_TOKEN, API_URL } from "../constants/constants";
 
 export async function createTask(taskData) {
   try {
-    const response = await fetch(`${API_URL}/tasks`, {
+    const response = await fetch(`${API_URL}/tasks?populate=*`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -14,7 +14,7 @@ export async function createTask(taskData) {
     });
 
     const data = await response.json();
-    console.log("Task created successfully:", data);
+    
     return data.data;
   } catch (error) {
     console.error("Error creating task:", error);

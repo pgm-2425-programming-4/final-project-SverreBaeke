@@ -14,9 +14,10 @@ export function TaskBoard({ tasks, handleTaskClick, statuses }) {
   };
 
   const taskGroups = groupTasksByStatus(tasks);
-  const activeStatuses = statuses
-    ?.filter(status => status.name.toLowerCase() !== "backlog")
-    ?.map(status => status.name) || [];
+  const activeStatuses =
+    statuses
+      ?.filter((status) => status.name.toLowerCase() !== "backlog")
+      ?.map((status) => status.name) || [];
 
   return (
     <section className="task-board">
@@ -30,7 +31,7 @@ export function TaskBoard({ tasks, handleTaskClick, statuses }) {
               </span>
             </header>
             <div className="task-board__tasks">
-              {taskGroups[status]?.map((task) => {
+              {taskGroups[status].map((task) => {
                 return (
                   <TaskCard
                     key={task.id}
@@ -38,10 +39,7 @@ export function TaskBoard({ tasks, handleTaskClick, statuses }) {
                     onClick={() => handleTaskClick(task)}
                   />
                 );
-              })}
-              {(!taskGroups[status] || taskGroups[status].length === 0) && (
-                <p>No tasks</p>
-              )}
+              }) || <p>No tasks</p>}
             </div>
           </div>
         );

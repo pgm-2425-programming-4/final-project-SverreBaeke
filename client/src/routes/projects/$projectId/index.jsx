@@ -35,7 +35,7 @@ function RouteComponent() {
   const [selectedLabels, setSelectedLabels] = useState([])
 
   useEffect(() => {
-    setTasks(project.tasks);
+    setTasks(project?.tasks);
     setIsModalOpen(false);
     setSelectedTask(null);
     setIsAddTaskModalOpen(false);

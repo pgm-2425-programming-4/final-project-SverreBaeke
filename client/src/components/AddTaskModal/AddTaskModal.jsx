@@ -6,11 +6,12 @@ export function AddTaskModal({
   onClose,
   onTaskCreated,
   statuses,
+  labels,
   projectId,
 }) {
   const [taskName, setTaskName] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
-  const [taskLabels, setTaskLabels] = useState([]);
+  const [selectedLabels, setSelectedLabels] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("");
 
   useEffect(() => {
@@ -27,6 +28,14 @@ export function AddTaskModal({
     }
   }, [isOpen, statuses]);
 
+  const handleLabelChange = (labelId) => {
+    setSelectedLabels((prev) =>
+      prev.includes(labelId)
+        ? prev.filter((id) => id !== labelId)
+        : [...prev, labelId],
+    );
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -34,7 +43,7 @@ export function AddTaskModal({
       const newTask = {
         name: taskName.trim(),
         description: taskDescription.trim(),
-        labels: taskLabels,
+        labels: selectedLabels,
         state: selectedStatus,
         project: projectId,
       };
@@ -43,9 +52,8 @@ export function AddTaskModal({
 
       setTaskName("");
       setTaskDescription("");
-      setTaskLabels([]);
+      setSelectedLabels([]);
       setSelectedStatus("");
-      
     } catch (error) {
       console.error("Failed to create task:", error);
       alert("Failed to create task. Please try again.");
@@ -89,6 +97,27 @@ export function AddTaskModal({
               placeholder="Enter task description..."
               rows="4"
             />
+          </div>
+
+          <div className="add-task-modal__field">
+            <label className="add-task-modal__label">Labels</label>
+            <div className="add-task-modal__labels">
+              {labels?.map((label) => (
+                <label
+                  key={label.documentId}
+                  className="add-task-modal__label-checkbox"
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedLabels.includes(label.documentId)}
+                    onChange={() => handleLabelChange(label.documentId)}
+                  />
+                  <span className="add-task-modal__label-text">
+                    {label.name}
+                  </span>
+                </label>
+              ))}
+            </div>
           </div>
 
           <div className="add-task-modal__field">

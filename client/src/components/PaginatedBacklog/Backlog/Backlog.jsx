@@ -6,11 +6,8 @@ export function BacklogTaskList({ backlogTasks }) {
 
   }
 
-  const projectName = backlogTasks[0].project.name;
-
   return (
     <>
-      <h1>Backlog for {projectName}</h1>
       <table>
         <thead>
           <tr>

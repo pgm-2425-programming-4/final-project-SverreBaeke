@@ -3,7 +3,7 @@ import { fetchProjectsById } from "../../../data/fetchProjects";
 import { TaskModal } from "../../../components/TaskModal/TaskModal";
 import { TaskBoard } from "../../../components/TaskBoard/TaskBoard";
 import { useState } from "react";
-import { fetchStatuses, updateTaskStatus } from "../../../data/fetchStatuses";
+import { fetchStatuses, updateTaskStatus } from "../../../data/StatusesOperations";
 
 export const Route = createFileRoute("/projects/$projectId/")({
   loader: async ({ params }) => {

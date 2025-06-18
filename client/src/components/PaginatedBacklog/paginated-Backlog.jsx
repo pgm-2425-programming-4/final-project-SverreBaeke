@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 export function PaginatedBackLog({ projectId }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(1);
-  const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[0]);
+  const [pageSize, setPageSize] = useState(PAGE_SIZE_OPTIONS[1]);
 
   function handlePageChanged(pageNumber) {
     setCurrentPage(pageNumber);

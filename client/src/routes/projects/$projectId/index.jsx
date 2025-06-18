@@ -6,11 +6,11 @@ import {
 } from "../../../data/StatusesOperations";
 import { fetchProjectsById } from "../../../data/fetchProjects";
 import { fetchLabels } from "../../../data/fetchLabels";
+import { Topbar } from "../../../components/Topbar/Topbar";
 import { TaskModal } from "../../../components/TaskModal/TaskModal";
 import { TaskBoard } from "../../../components/TaskBoard/TaskBoard";
 import { AddTaskModal } from "../../../components/AddTaskModal/AddTaskModal";
 import { createTask } from "../../../data/TaskOperations";
-import "./projects.css";
 
 export const Route = createFileRoute("/projects/$projectId/")({
   loader: async ({ params }) => {
@@ -74,10 +74,12 @@ function RouteComponent() {
       setTasks((prevTasks) =>
         prevTasks.map((task) => {
           if (task.documentId === taskId) {
-            const newStatus = statuses.find(status => status.documentId === newStatusId);
+            const newStatus = statuses.find(
+              (status) => status.documentId === newStatusId,
+            );
             return {
               ...task,
-              state: newStatus
+              state: newStatus,
             };
           }
           return task;
@@ -91,12 +93,11 @@ function RouteComponent() {
 
   return (
     <>
-      <header className="page-header">
-        <h1>{project.name}</h1>
-        <button className="add-task-btn" onClick={handleAddTask} type="button">
-          + Add Task
-        </button>
-      </header>
+      <Topbar
+        projectName={project.name}
+        projectId={project.documentId}
+        onAddTask={handleAddTask}
+      />
 
       <TaskBoard
         tasks={activeTasks}

@@ -1,9 +1,8 @@
 .app-layout {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
-  grid-template-rows: var(--topbar-height) 1fr;
+  grid-template-rows: 1fr;
   grid-template-areas:
-    "sidebar topbar"
     "sidebar content";
   min-height: 100vh;
 }
@@ -13,13 +12,8 @@
   z-index: 2;
 }
 
-.app-layout__topbar {
-  grid-area: topbar;
-  z-index: 1;
-}
-
 .app-layout__content {
   grid-area: content;
-  padding: var(--spacing-2xl);
   background: var(--color-bg-primary);
+  overflow-y: auto;
 }

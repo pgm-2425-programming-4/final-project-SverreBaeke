@@ -32,7 +32,6 @@ export async function updateTaskStatus(taskId, newStatusId) {
     });
 
     const data = await response.json();
-    console.log("Task updated successfully:", data);
 
     return data.data;
   } catch (error) {

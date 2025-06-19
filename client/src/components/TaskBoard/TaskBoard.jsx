@@ -14,10 +14,9 @@ export function TaskBoard({ tasks, handleTaskClick, statuses }) {
   };
 
   const taskGroups = groupTasksByStatus(tasks);
+
   const activeStatuses =
-    statuses
-      ?.filter((status) => status.name.toLowerCase() !== "backlog")
-      ?.map((status) => status.name) || [];
+    statuses?.filter((status) => status.name.toLowerCase() !== "backlog")?.map((status) => status.name) || [];
 
   return (
     <section className="task-board">

@@ -1,5 +1,6 @@
-import { Link } from "@tanstack/react-router";
 import "./Topbar.css";
+import { TopbarNav } from "./TopbarNav/TopbarNav";
+import { TopbarFilters } from "./TopbarFilters/TopbarFilters";
 
 export function Topbar({
   projectName,
@@ -17,60 +18,13 @@ export function Topbar({
           <h1 className="topbar__project-name">{projectName}</h1>
         </div>
 
-        <nav className="topbar__nav">
-          <ul className="topbar__list">
-            <li className="topbar__item">
-              <Link
-                to="/projects/$projectId/backlog"
-                params={{ projectId }}
-                className="topbar__link"
-              >
-                Backlog
-              </Link>
-            </li>
-            <li className="topbar__item">
-              <Link
-                to="/projects/$projectId"
-                params={{ projectId }}
-                className="topbar__link"
-                activeOptions={{ exact: true }}
-              >
-                Board
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
-        {labels && labels.length > 0 ? (
-          <div className="topbar__filters">
-            <div className="topbar__filter-chips">
-              {labels.map((label) => (
-                <button
-                  key={label.documentId}
-                  className={`topbar__filter-chip ${
-                    selectedLabels?.includes(label.documentId)
-                      ? "topbar__filter-chip--active"
-                      : ""
-                  }`}
-                  onClick={() => onToggleLabel?.(label.documentId)}
-                  type="button"
-                >
-                  {label.name}
-                </button>
-              ))}
-            </div>
-
-            {selectedLabels?.length > 0 ? (
-              <button
-                className="topbar__clear-filters"
-                onClick={onClearFilters}
-                type="button"
-              >
-                Clear ({selectedLabels.length})
-              </button>
-            ) : null}
-          </div>
-        ) : null}
+        <TopbarNav projectId={projectId} />
+        <TopbarFilters
+          labels={labels}
+          selectedLabels={selectedLabels}
+          onToggleLabel={onToggleLabel}
+          onClearFilters={onClearFilters}
+        />
 
         {onAddTask ? (
           <div className="topbar__actions">

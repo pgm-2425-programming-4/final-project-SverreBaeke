@@ -1,0 +1,55 @@
+.topbar__filters {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.topbar__filter-chips {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.topbar__filter-chip {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.topbar__filter-chip:hover {
+  background: var(--color-bg-hover);
+}
+
+.topbar__filter-chip--active {
+  background: var(--color-accent);
+  color: var(--color-text-tertiary);
+  border-color: var(--color-accent);
+}
+
+.topbar__clear-filters {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-bg-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.topbar__clear-filters:hover {
+  background: var(--color-text-secondary);
+  color: var(--color-text-tertiary);
+}
+
+@media (max-width: 48rem) {
+  .topbar__filters {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    justify-content: center;
+    order: 3;
+  }
+}

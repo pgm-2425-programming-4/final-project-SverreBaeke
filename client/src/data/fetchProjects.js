@@ -26,7 +26,6 @@ export async function fetchProjectsById(projectId) {
       },
     );
     const data = await result.json();
-    console.log(data.data);
     return data.data;
   } catch (error) {
     console.error("Error fetching project by id:", error);

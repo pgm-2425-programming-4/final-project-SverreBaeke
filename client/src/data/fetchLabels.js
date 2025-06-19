@@ -9,7 +9,6 @@ export async function fetchLabels() {
     });
 
     const data = await result.json();
-    console.log("Labels fetched:", data.data);
     return data.data;
   } catch (error) {
     console.error("Error fetching labels:", error);

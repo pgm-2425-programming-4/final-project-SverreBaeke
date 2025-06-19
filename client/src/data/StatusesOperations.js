@@ -9,7 +9,6 @@ export async function fetchStatuses() {
     });
     const data = await result.json();
 
-    console.log(data);
     return data.data;
   } catch (error) {
     console.error("Error fetching statuses:", error);

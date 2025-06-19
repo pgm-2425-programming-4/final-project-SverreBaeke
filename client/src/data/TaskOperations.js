@@ -14,7 +14,6 @@ export async function createTask(taskData) {
     });
 
     const data = await response.json();
-    
     return data.data;
   } catch (error) {
     console.error("Error creating task:", error);

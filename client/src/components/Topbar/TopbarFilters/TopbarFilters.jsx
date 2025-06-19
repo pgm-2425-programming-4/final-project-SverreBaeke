@@ -5,9 +5,6 @@ export function TopbarFilters({
   selectedLabels,
   onClearFilters,
 }) {
-  if (!labels && labels.length > 0) {
-    return null;
-  }
 
   return (
     <div className="topbar__filters">

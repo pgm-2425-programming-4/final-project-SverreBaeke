@@ -19,24 +19,25 @@ export function Topbar({
         </div>
 
         <TopbarNav projectId={projectId} />
-        <TopbarFilters
-          labels={labels}
-          selectedLabels={selectedLabels}
-          onToggleLabel={onToggleLabel}
-          onClearFilters={onClearFilters}
-        />
 
-        {onAddTask ? (
-          <div className="topbar__actions">
-            <button
-              className="topbar__add-task-btn"
-              onClick={onAddTask}
-              type="button"
-            >
-              + Add Task
-            </button>
-          </div>
+        {labels && labels.length > 0 ? (
+          <TopbarFilters
+            labels={labels}
+            selectedLabels={selectedLabels}
+            onToggleLabel={onToggleLabel}
+            onClearFilters={onClearFilters}
+          />
         ) : null}
+
+        <div className="topbar__actions">
+          <button
+            className="topbar__add-task-btn"
+            onClick={onAddTask}
+            type="button"
+          >
+            + Add Task
+          </button>
+        </div>
       </div>
     </header>
   );

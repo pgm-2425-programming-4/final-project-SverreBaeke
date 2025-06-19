@@ -34,7 +34,12 @@ export function TaskModal({ task, isOpen, onClose, onStatusChange, statuses }) {
             id="status-select"
             className="task-modal__select"
             defaultValue={task?.state?.documentId}
-            onChange={(e) => onStatusChange(task?.documentId, e.target.value)}
+            onChange={(e) =>
+              onStatusChange({
+                taskId: task?.documentId,
+                newStatusId: e.target.value,
+              })
+            }
           >
             <option value="">Select status...</option>
             {statuses.map((status) => {

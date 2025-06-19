@@ -1,4 +1,4 @@
-import "./Taskcard.css";
+import "./TaskCard.css";
 
 export function TaskCard({ task, onClick }) {
   const getStatusClass = (status) => {

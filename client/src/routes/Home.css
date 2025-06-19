@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 80vh;
   padding: var(--spacing-xl);
-   color: var(--color-text-primary);
+  color: var(--color-text-primary);
 }
 
 .welcome-content {
@@ -43,11 +43,10 @@
 }
 
 @media (max-width: 768px) {
-  
   .welcome-header h1 {
     font-size: var(--font-size-base);
   }
-  
+
   .welcome-page {
     padding: var(--spacing-lg);
   }

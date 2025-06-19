@@ -47,7 +47,7 @@ export function PaginatedBackLog({ projectId }) {
   }
 
   const backlogTasks = fetchedBacklogTasks.data || [];
-  
+
   return (
     <>
       <div style={{ marginBottom: "2rem" }}>
@@ -62,5 +62,4 @@ export function PaginatedBackLog({ projectId }) {
       />
     </>
   );
-
 }

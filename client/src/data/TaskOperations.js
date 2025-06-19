@@ -9,8 +9,8 @@ export async function createTask(taskData) {
         Authorization: `Bearer ${API_TOKEN}`,
       },
       body: JSON.stringify({
-        data: taskData
-      })
+        data: taskData,
+      }),
     });
 
     const data = await response.json();

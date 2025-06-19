@@ -2,8 +2,7 @@ import "./Backlog.css";
 
 export function BacklogTaskList({ backlogTasks }) {
   if (!backlogTasks || backlogTasks.length === 0) {
-    return <h1>No Tasks Found</h1>
-
+    return <h1>No Tasks Found</h1>;
   }
 
   return (

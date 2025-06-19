@@ -13,7 +13,7 @@ export const Route = createRootRoute({
     if (!projects) {
       throw notFound({ data: "NO_PROJECTS" });
     }
-    return {projects};
+    return { projects };
   },
 
   notFoundComponent: ({ data }) => {
@@ -25,7 +25,7 @@ export const Route = createRootRoute({
 });
 
 function RouteComponent() {
-  const {projects} = Route.useLoaderData()
+  const { projects } = Route.useLoaderData();
   return (
     <QueryClientProvider client={queryClient}>
       <AppLayout projects={projects} />

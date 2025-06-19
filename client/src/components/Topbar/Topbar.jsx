@@ -40,7 +40,7 @@ export function Topbar({
             </li>
           </ul>
         </nav>
-        
+
         {labels && labels.length > 0 ? (
           <div className="topbar__filters">
             <div className="topbar__filter-chips">

@@ -1,7 +1,6 @@
 import "./Taskcard.css";
 
 export function TaskCard({ task, onClick }) {
-
   const getStatusClass = (status) => {
     switch (status?.toLowerCase()) {
       case "done":
@@ -35,7 +34,10 @@ export function TaskCard({ task, onClick }) {
   }
 
   return (
-    <article className={`task-card ${getStatusClass(task?.state?.name)}`} onClick={onClick}>
+    <article
+      className={`task-card ${getStatusClass(task?.state?.name)}`}
+      onClick={onClick}
+    >
       <h3 className="task-card__title">{task?.name}</h3>
       {renderTaskLabels(task)}
     </article>

@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import "./Sidebar.css";
 
-export function Sidebar({projects}) {
-
+export function Sidebar({ projects }) {
   return (
     <aside className="app-layout__sidebar">
       <nav className="sidebar">

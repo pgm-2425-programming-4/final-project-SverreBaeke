@@ -2,7 +2,7 @@ import { Sidebar } from "../Sidebar/Sidebar.jsx";
 import { Outlet } from "@tanstack/react-router";
 import "./AppLayout.css";
 
-export function AppLayout({projects}) {
+export function AppLayout({ projects }) {
   return (
     <div className="app-layout">
       <Sidebar projects={projects} />

@@ -32,14 +32,14 @@ function RouteComponent() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
-  const [selectedLabels, setSelectedLabels] = useState([])
+  const [selectedLabels, setSelectedLabels] = useState([]);
 
   useEffect(() => {
     setTasks(project?.tasks);
     setIsModalOpen(false);
     setSelectedTask(null);
     setIsAddTaskModalOpen(false);
-    setSelectedLabels([])
+    setSelectedLabels([]);
   }, [projectId, project?.tasks]);
 
   const activeTasks = tasks?.filter((task) => {
@@ -49,20 +49,20 @@ function RouteComponent() {
 
   const filteredTasks = activeTasks?.filter((task) => {
     const hasSelectedLabel = task.labels.some((label) =>
-      selectedLabels.includes(label.documentId)
+      selectedLabels.includes(label.documentId),
     );
     return hasSelectedLabel;
   });
 
-    function toggleLabelFilter(labelId) {
-    setSelectedLabels(prev => 
+  function toggleLabelFilter(labelId) {
+    setSelectedLabels((prev) =>
       prev.includes(labelId)
-        ? prev.filter(id => id !== labelId)
-        : [...prev, labelId]
+        ? prev.filter((id) => id !== labelId)
+        : [...prev, labelId],
     );
   }
 
-  function clearFilters () {
+  function clearFilters() {
     setSelectedLabels([]);
   }
 
@@ -128,11 +128,11 @@ function RouteComponent() {
         labels={labels}
         selectedLabels={selectedLabels}
         onToggleLabel={toggleLabelFilter}
-        onClearFilters = {clearFilters}
+        onClearFilters={clearFilters}
       />
 
       <TaskBoard
-        tasks={selectedLabels.length > 0? filteredTasks: activeTasks}
+        tasks={selectedLabels.length > 0 ? filteredTasks : activeTasks}
         handleTaskClick={handleTaskClick}
         statuses={statuses}
       />

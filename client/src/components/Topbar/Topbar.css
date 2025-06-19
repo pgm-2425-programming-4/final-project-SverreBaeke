@@ -43,7 +43,6 @@
   background: var(--color-accent-hover);
 }
 
-
 @media (max-width: 48rem) {
   .topbar__content {
     grid-template-columns: auto 1fr auto;

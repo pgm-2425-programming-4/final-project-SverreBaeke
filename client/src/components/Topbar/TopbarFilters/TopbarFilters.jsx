@@ -1,11 +1,10 @@
-import "./TopbarFilters.css"
+import "./TopbarFilters.css";
 export function TopbarFilters({
   labels,
   onToggleLabel,
   selectedLabels,
   onClearFilters,
 }) {
-
   return (
     <div className="topbar__filters">
       <div className="topbar__filter-chips">

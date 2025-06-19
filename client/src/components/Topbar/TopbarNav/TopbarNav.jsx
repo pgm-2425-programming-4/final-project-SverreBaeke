@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import "./TopbarNav.css"
+import "./TopbarNav.css";
 
 export function TopbarNav({ projectId }) {
   return (

@@ -18,7 +18,7 @@ function RouteComponent() {
   return (
     <>
       <Topbar projectName={project.name} projectId={projectId} />
-      <PaginatedBackLog projectId={projectId} />;
+      <PaginatedBackLog projectId={projectId} />
     </>
   );
 }

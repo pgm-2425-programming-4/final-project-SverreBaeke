@@ -35,3 +35,7 @@ tbody tr:hover {
   background-color: var(--color-bg-tertiary);
   transition: background-color 0.2s ease;
 }
+
+h1 {
+  padding: var(--spacing-lg);
+}
